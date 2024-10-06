@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla Super Hispanic League</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Imagen de fondo detrás del título */
+        .title-container h2 {
+            position: relative;
+            color: gold;
+            font-size: 2em;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .title-container img.background-logo {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            opacity: 0.1; /* Para hacer que el logo sea visible pero tenue */
+        }
+
+        h2 img {
+            height: 1em; /* Tamaño similar al texto */
+            margin-left: 10px; /* Espacio entre texto e imagen */
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #222;
+        }
+
+        table, th, td {
+            border: 1px solid gold;
+        }
+
+        th {
+            background-color: black;
+            color: gold;
+            padding: 10px;
+        }
+
+        td {
+            padding: 8px;
+            color: white;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: black;
+            color: gold;
+            border: 2px solid gold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: gold;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Contenedor del título con imagen de fondo -->
+<div class="title-container">
+    <h2>
+        Super Hispanic League
+        <img src="https://images-ext-1.discordapp.net/external/Jo8HfkH4jj6Fj4UnWQ53ujMoA4_oLhh-jsh7ZBD3BA4/https/cdn.discordapp.com/emojis/1261446478832996432.png?format=webp&quality=lossless" alt="Logo">
+    </h2>
+    <img class="background-logo" src="https://images-ext-1.discordapp.net/external/Jo8HfkH4jj6Fj4UnWQ53ujMoA4_oLhh-jsh7ZBD3BA4/https/cdn.discordapp.com/emojis/1261446478832996432.png?format=webp&quality=lossless" alt="Logo de fondo">
+</div>
+
+<!-- Tabla de la Super Hispanic League con TIER -->
+<table id="ligaTable">
+    <thead>
+        <tr>
+            <th>TIER</th>
+            <th>Media</th>
+            <th>Usuario</th>
+            <th>Nacionalidad</th>
+            <th>Equipo</th>
+            <th>Contrato</th>
+            <th>Salario</th>
+            <th>Valor de mercado</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Ejemplo de 30 equipos con TIER 4 -->
+        <script>
+            for (let i = 1; i <= 30; i++) {
+                document.write(`
+                <tr>
+                    <td>TIER 4</td>
+                    <td>${80 + (i % 5)}</td>
+                    <td>Usuario ${i}</td>
+                    <td>País ${i}</td>
+                    <td>Equipo ${i}</td>
+                    <td>${(1 + i % 5)} años</td>
+                    <td>€${(1 + i % 4)}M</td>
+                    <td>€${(40 + i)}M</td>
+                </tr>`);
+            }
+        </script>
+    </tbody>
+</table>
+
+<!-- Botón para descargar el Excel -->
+<button onclick="downloadExcel()">Descargar Excel</button>
+
+<script>
+    function downloadExcel() {
+        // Obtener la tabla
+        var table = document.getElementById('ligaTable');
+
+        // Crear una nueva tabla HTML como cadena
+        var tableHTML = '<table border="1">' + table.innerHTML + '</table>';
+
+        // Crear una nueva hoja de Excel con la tabla
+        var dataType = 'application/vnd.ms-excel';
+        var tableData = encodeURIComponent(tableHTML);
+
+        // Crear enlace de descarga
+        var downloadLink = document.createElement('a');
+        downloadLink.href = 'data:' + dataType + ', ' + tableData;
+        downloadLink.download = 'Super_Hispanic_League.xls';
+
+        // Simular clic en el enlace
+        downloadLink.click();
+    }
+</script>
+
+</body>
+</html>
